@@ -2,15 +2,13 @@
 #displacement and rupture files
 
 #install libraries
-# install.packages('sp')
 # install.packages("tidyverse")
-# install.packages("mgcv")
-# install.packages("stringr")
+# install.packages("plyr")
+# install.packages("assertthat")
+# install.packages("pracma")
+# install.packages("parallel")
 # install.packages("ggplot2")
 # install.packages("ggmap")
-# install.packages("assertthat")
-# install.packages("matrixStats")
-# install.packages("pracma")
 
 #clean variables
 rm(list = ls())
@@ -19,15 +17,9 @@ rm(list = ls())
 library(tidyverse)
 library(plyr)
 library(assertthat)
-library(stringr)
-library(matrixStats)
 library(pracma)
 #parallel processing libraries
 library(parallel)
-#spatial data libraries
-library(sp)
-#spline libraries
-library(mgcv)
 #plotting libraries
 library(ggplot2)
 library(ggmap)
@@ -62,8 +54,10 @@ r_thres_max <- 1e4
 field_disp_wt <- 'recommended_net_preferred_for_analysis_meters'
 
 #filenames
-fname_flatfile_rup    <- file.path('..','Data','flatfiles','ruptures_for_greg.csv')
-fname_flatfile_disp   <- file.path('..','Data','flatfiles','pts_for_greg.csv')
+fname_flatfile_rup    <- file.path('..','Data','flatfiles',
+				    '1970_Calingiri_FDHI_ph17_rev0_noECS_FLATFILE_RUPTURES_20210327.csv')
+fname_flatfile_disp   <- file.path('..','Data','flatfiles',
+				    '1970_Calingiri_FDHI_ph17_rev0_noECS_FLATFILE_MEASUREMENTS_20210327.csv')
 fname_flatfile_prerup <- NULL
 #flag produce flatfile
 flag_flatfile <- FALSE
@@ -85,7 +79,7 @@ if(!is.null(fname_flatfile_prerup)) colnames(flatfile_prerup)[colnames(flatfile_
 if(!is.null(fname_flatfile_prerup)) colnames(flatfile_prerup)[colnames(flatfile_prerup) == "latitude_degrees"]  <- "Latitude"
 
 #number of earthquakes
-eqid_array <- unique(flatfile_rup$EQ_ID)
+eqid_array <- unique(flatfile_disp$EQ_ID)
 n_eq<- length(eqid_array)
 
 #output directory

@@ -109,13 +109,9 @@ gc2_ut <- function(fault_disp, ecs_df){
   
   #check if distance metrics FORTRAN library is loaded
   if (!is.loaded('r_wrapper_gc2')) {
-    #set path library
-    # filemount <- '/mnt/ssd' #Working Station -SSD
-    # filemount <- '/run/user/1000/gvfs/afp-volume:host=HALCloud-2.local,user=glavrent,volume=glavrent' #HALcloud, AFP protocol
-    filemount <- '/mnt/halcloud_nfs/glavrent' #HALcloud, NFS protocol
-    
+    #set path FORTRAN library
     #file path for FORTRAN subroutine
-    filepath_lib <- file.path(filemount,'Research/Distance_metrics/dist_metrics_progs/R_dist_metrics.so')
+    filepath_lib <- file.path('R_lib','R_dist_metrics.so')
     dyn.load(filepath_lib)
   }
   
