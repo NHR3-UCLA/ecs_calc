@@ -260,12 +260,9 @@ for (k in seq(n_eq)){
   # Save ECS data
   #--------------------
   #revert lat lon fields to original names and keep only relevant fields
-  fault_disp_all <- fault_disp_all[c('EQ_ID','eq_name','PT_DS_ID','PT_ID','MEAS_ID','rank','group_id','location_id','Longitude','Latitude','ecs_u','ecs_t','ecs_curv')]
   colnames(fault_disp_all) [names(fault_disp_all) %in% c('Longitude','Latitude')] <- c('longitude_degrees','latitude_degrees')
-  fault_rup_all <- fault_rup_all[c('EQ_ID','eq_name','RUP_DS_ID','RUP_ID','NODE_ID','rank','Longitude','Latitude','ecs_u','ecs_t','ecs_curv')]
   colnames(fault_rup_all) [names(fault_rup_all) %in% c('Longitude','Latitude')] <- c('longitude_degrees','latitude_degrees')
   if (nrow(fault_prerup_all) >= 1){
-    fault_prerup_all <- fault_prerup_all[c('EQ_ID','eq_name','PRUP_DS_ID','PRUP_ID','PNODE_ID','Longitude','Latitude','ecs_u','ecs_t','ecs_curv')]
     colnames(fault_prerup_all) [names(fault_prerup_all) %in% c('Longitude','Latitude')] <- c('longitude_degrees','latitude_degrees')
   }
   
